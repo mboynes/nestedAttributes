@@ -10,13 +10,13 @@
 			var content = $('#' + collection + '_fields_template').html();
 			var regexp  = new RegExp('new_' + collection, 'g');
 			var new_id  = new Date().getTime();
-			$this.append(content.replace(regexp, new_id));    
+			$this.append($(content.replace(regexp, new_id)).fadeIn('slow'));    
 			return false;
 		});
 		$('a.remove_'+s.singular).live('click.nestedAttributes', function() {
-			var hidden_field = $(this).closest('.'+s.singular).children('input[type=hidden]')[0];
-			if(hidden_field) { hidden_field.value = '1'; }
-			$(this).closest('.'+s.singular).hide();
+			var hidden_field = $(this).closest('.'+s.singular).find('input:hidden[id$="destroy"]');
+			if(hidden_field) { hidden_field.val('1'); }
+			$(this).closest('.'+s.singular).fadeOut('fast');
 			return false;
 		});
 	};
